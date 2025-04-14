@@ -9,15 +9,15 @@ class Kategori extends Model
 {
     use HasFactory;
     protected $table = 'kategori';
-    protected $primaryKey = 'id_kategori';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'id_kategori',
+        'id',
         'nama_kategori',
     ];
 
     public function buku()
     {
-        return $this->hasMany(Buku::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(Buku::class, 'id_kategori', 'id');
     }
 }

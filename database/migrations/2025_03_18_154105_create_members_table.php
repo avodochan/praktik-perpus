@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('member', function (Blueprint $table) {
             $table->string('id_member')->primary();
+            $table->unsignedBigInteger(('id_user'));
             $table->string('nama');
             $table->string('email')->unique();
             $table->text('alamat');
             $table->string('no_tlp');
+            
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

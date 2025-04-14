@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="/admin/dashboard" class="btn btn-primary">Dashboard</a>
+<a href="/admin/buku" class="btn btn-primary">Lihat Buku</a>
+<a href="/admin/member" class="btn btn-primary">Lihat Member</a>
+<a href="/admin/kategori" class="btn btn-primary">Lihat Kategori</a>
+<a href="/admin/peminjaman" class="btn btn-primary">Lihat Peminjaman</a>
+<a href="/admin/denda" class="btn btn-primary">Lihat Denda</a>
     <h1>Daftar Buku</h1>
     <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
 
@@ -12,6 +18,7 @@
         <thead>
             <tr>
                 <th>ID Buku</th>
+                <th>Kategori</th>
                 <th>Cover</th>
                 <th>Judul</th>
                 <th>Penulis</th>
@@ -24,6 +31,7 @@
             @foreach($buku as $b)
                 <tr>
                     <td>{{ $b->id_buku }}</td>
+                    <td>{{ $b->kategori->nama_kategori }}</td>
                     <td>
                         @if($b->cover)
                             <img src="{{ asset('storage/' . $b->cover) }}" alt="Cover Buku" width="80">

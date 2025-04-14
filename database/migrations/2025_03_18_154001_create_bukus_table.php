@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('buku', function (Blueprint $table) {
             $table->string('id_buku')->primary();
-            $table->string('id_kategori');
+            $table->unsignedBigInteger('id_kategori');
             $table->string('judul');
             $table->string('penulis');
             $table->string('penerbit');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->text('sinopsis');
             
-            $table->foreign('id_kategori')->references('id_kategori')->on('kategori')->onDelete('cascade')->nullable();            
+            $table->foreign('id_kategori')->references('id')->on('kategori')->onDelete('cascade')->nullable();            
 
         });
     }

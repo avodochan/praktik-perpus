@@ -8,6 +8,7 @@ class AdminController extends Controller
 {
     public function index()
     {
+        //mengarahkan ke halaman dashboard admin
         return view('admin.dashboard');
     }
 }

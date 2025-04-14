@@ -15,6 +15,11 @@ class KategoriController extends Controller
         $kategori = Kategori::all();
         return view('admin.kategori.index', compact('kategori'));
     }
+    public function koordinatorview()
+    {
+        $kategori = Kategori::all();
+        return view('koordinator.kategori.index', compact('kategori'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,12 +35,10 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kategori' => 'required|unique:kategori,id_kategori',
             'nama_kategori' => 'required|string|max:255',
         ]);
 
         Kategori::create([
-            'id_kategori' => $request->id_kategori,
             'nama_kategori' => $request->nama_kategori,
         ]);
 
@@ -53,25 +56,21 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(kategori $kategori, $id_kategori)
+    public function edit(kategori $kategori)
     {
-        $kategori = Kategori::findOrFail($id_kategori);
-        return view('admin.kategori.edit', compact('kategori'));
+        return view('admin.kategori.edit',compact('kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, kategori $kategori, $id_kategori)
+    public function update(Request $request, kategori $kategori)
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        $kategori = Kategori::findOrFail($id_kategori);
-        $kategori->update([
-            'nama_kategori' => $request->nama_kategori,
-        ]);
+        $kategori->update($request->all());
 
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui!');
     }
@@ -79,9 +78,8 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(kategori $kategori, $id_kategori)
+    public function destroy(kategori $kategori)
     {
-        $kategori = Kategori::findOrFail($id_kategori);
         $kategori->delete();
 
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus!');

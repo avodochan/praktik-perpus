@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\member;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -12,7 +12,13 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $member = Member::all();
+        return view('admin.member.index', compact('member'));
+    }
+    public function koordinatorview()
+    {
+        $member = Member::all();
+        return view('koordinator.member.index', compact('member'));
     }
 
     /**
@@ -44,7 +50,8 @@ class MemberController extends Controller
      */
     public function edit(member $member)
     {
-        //
+        // dd($member);
+        return view ('admin.member.edit', compact('member'));
     }
 
     /**
@@ -52,7 +59,15 @@ class MemberController extends Controller
      */
     public function update(Request $request, member $member)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'alamat' => 'required',
+            'no_tlp' => 'required',
+        ]);
+
+        $member->update($request->all());
+        return redirect()->route('member.index')->with('success', 'Member berhasil diperbarui.');
     }
 
     /**
@@ -60,6 +75,7 @@ class MemberController extends Controller
      */
     public function destroy(member $member)
     {
-        //
+        $member->delete();
+        return redirect()->route('member.index')->with('success', 'Member berhasil dihapus.');
     }
 }
