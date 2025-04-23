@@ -35,7 +35,9 @@
                 <th>ID Buku</th>
                 <th>ID Member</th>
                 <th>Tanggal Pinjam</th>
-                <th>Tanggal Kembali</th>
+                <th>Tanggal Kembali Seharusnya</th>
+                <th>Tanggal Kembali Sebenarnya</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -45,8 +47,12 @@
                     <td>{{ $p->id_pinjem }}</td>
                     <td>{{ $p->buku->judul}}</td>
                     <td>{{ $p->member->nama}}</td>
-                    <td>{{ $p->tgl_pinjam}}</td>
-                    <td>{{ $p->tgl_kembali}}</td>
+                    <td>{{ $p->tgl_pinjam_formatted }}</td>
+                    <td>{{ $p->tgl_kembali_seharusnya }}</td>
+                    <td>{{ $p->tgl_kembali_sebenarnya ?? '-'}}</td>
+                    <td>
+                        <span class="badge bg-{{ $p['status_class'] }}">{{ $p['status_text'] }}</span>
+                    </td>
                     <td>
                         <a href="{{ route('peminjaman.edit', $p->id_pinjem) }}" class="btn btn-warning btn-sm">Edit</a>
 

@@ -58,6 +58,18 @@
             <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" value="{{ old('tgl_kembali') ?? date('Y-m-d') }}">
         </div>
         
+        <div class="mb-3">
+            <label for="kondisi_buku">Kondisi Buku saat Dikembalikan:</label>
+    <select name="kondisi_buku" id="kondisi_buku" class="form-control @error('kondisi_buku') is-invalid @enderror" required>
+        <option value="baik">Baik</option>
+        <option value="rusak">Rusak</option>
+        <option value="hilang">Hilang</option>
+    </select>
+    @error('kondisi_buku')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+        </div>
+        
         <button type="submit" class="btn btn-success">Simpan Peminjaman</button>
     </form>
 </div>

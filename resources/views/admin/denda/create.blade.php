@@ -34,8 +34,7 @@
             <select id="jenis_denda" name="jenis_denda" class="form-control" required>
                 <option value="">Pilih Jenis Denda</option>
                     <option value="Hilang">Hilang</option>
-                    <option value="Rusak">Rusak</option>
-                    <option value="Terlambat">Terlambat</option>
+                    <option value="Rusak">Rusak</option>        
             </select>
         </div>
         

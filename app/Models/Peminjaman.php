@@ -51,20 +51,38 @@ class Peminjaman extends Model
     {
         return $this->attributes['tgl_kembali'] ? Carbon::parse($this->attributes['tgl_kembali'])->format('d-m-Y') : null;
     }
+    public function getStatusTextAttribute()
+    {
+        if ($this->tgl_kembali) {
+            $adaDenda = Denda::where('id_pinjem', $this->id_pinjem)->exists();
+            return $adaDenda ? 'Selesai dengan denda' : 'Selesai';
+        }
+        return 'Dipinjam';
+    }
+
+    public function getStatusClassAttribute()
+    {
+        if ($this->tgl_kembali) {
+            $adaDenda = Denda::where('id_pinjem', $this->id_pinjem)->exists();
+            return $adaDenda ? 'danger' : 'success';
+        }
+        return 'primary';
+    }
 
     
     //relasi ke tabel lain
-    public function member()
-    {
-        return $this->belongsTo(Member::class, 'id_member', 'id_member');
-    }
-
     public function buku()
-    {
-        return $this->belongsTo(Buku::class, 'id_buku', 'id_buku');
-    }
-    public function denda()
-    {
-        return $this->belongsTo(Denda::class, 'id_pinjem', 'id_pinjem');
-    }
+{
+    return $this->belongsTo(Buku::class, 'id_buku', 'id_buku');
+}
+
+public function member()
+{
+    return $this->belongsTo(Member::class, 'id_member', 'id_member');
+}
+
+public function denda()
+{
+    return $this->hasMany(Denda::class, 'id_pinjem', 'id_pinjem');
+}
 }

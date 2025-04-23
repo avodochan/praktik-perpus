@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-ps-center mb-3">
         <h2 class="mb-0">Daftar Peminjaman</h2>
         <a href="{{ route('peminjaman.create') }}" class="btn btn-primary">Tambah Peminjaman</a>
     </div>
@@ -21,6 +21,7 @@
                 <th>Tanggal Pinjam</th>
                 <th>Tanggal Kembali Seharusnya</th>
                 <th>Tanggal Kembali Sebenarnya</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -32,7 +33,10 @@
                     <td>{{ $p->member->nama}}</td>
                     <td>{{ $p->tgl_pinjam_formatted }}</td>
                     <td>{{ $p->tgl_kembali_seharusnya }}</td>
-                    <td>{{ $p->tgl_kembali_sebenarnya }}</td>
+                    <td>{{ $p->tgl_kembali_sebenarnya ?? '-'}}</td>
+                    <td>
+                        <span class="badge bg-{{ $p['status_class'] }}">{{ $p['status_text'] }}</span>
+                    </td>
                     <td>
                         <a href="{{ route('peminjaman.edit', $p->id_pinjem) }}" class="btn btn-warning btn-sm">Edit</a>
                     </td>
