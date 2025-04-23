@@ -1,20 +1,17 @@
 @extends('layouts.app')
-
+@extends('layouts.adminnavbar')
 @section('content')
-<a href="/admin/dashboard" class="btn btn-primary">Dashboard</a>
-<a href="/admin/buku" class="btn btn-primary">Lihat Buku</a>
-<a href="/admin/member" class="btn btn-primary">Lihat Member</a>
-<a href="/admin/kategori" class="btn btn-primary">Lihat Kategori</a>
-<a href="/admin/peminjaman" class="btn btn-primary">Lihat Peminjaman</a>
-<a href="/admin/denda" class="btn btn-primary">Lihat Denda</a>
-    <h1>Daftar Buku</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Daftar Buku</h2>
     <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
+</div>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID Buku</th>

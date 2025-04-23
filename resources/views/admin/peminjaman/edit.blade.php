@@ -42,13 +42,20 @@
         </div>
 
         <div class="mb-3">
-            <label for="tgl_pinjam" class="form-label">Tanggal Pinjam</label>
-            <input type="date" id="tgl_pinjam" name="tgl_pinjam" class="form-control" value="{{ old('tgl_pinjam') ?? $peminjaman->tgl_pinjam }}">
+            <label for="tgl_pinjam_display" class="form-label">Tanggal Pinjam</label>
+            <input type="text" id="tgl_pinjam_display" class="form-control" value="{{ Carbon\Carbon::parse($peminjaman->tgl_pinjam)->format('d-m-Y') }}" readonly>
+            <!-- Hidden input untuk menyimpan nilai asli format Y-m-d -->
+            <input type="hidden" name="tgl_pinjam" value="{{ $peminjaman->tgl_pinjam }}">
         </div>
 
         <div class="mb-3">
-            <label for="tgl_kembali" class="form-label">Tanggal Kembali</label>
-            <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" value="{{ old('tgl_kembali' ?? $peminjaman->tgl_kembali) }}">
+            <label for="tgl_kembali_seharusnya" class="form-label">Tanggal Kembali Seharusnya</label>
+            <input type="text" id="tgl_kembali_seharusnya" class="form-control" value="{{ Carbon\Carbon::parse($peminjaman->tgl_pinjam)->addDays(7)->format('d-m-Y') }}" readonly>
+        </div>
+        
+        <div class="mb-3">
+            <label for="tgl_kembali" class="form-label">Tanggal Kembali Sebenarnya</label>
+            <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" value="{{ old('tgl_kembali') ?? date('Y-m-d') }}">
         </div>
         
         <button type="submit" class="btn btn-success">Simpan Peminjaman</button>

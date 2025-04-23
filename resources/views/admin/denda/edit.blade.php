@@ -45,7 +45,6 @@
         </div>
 
         <button type="submit" class="btn btn-success">Simpan Buku</button>
-        <a href="{{ route('buku.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

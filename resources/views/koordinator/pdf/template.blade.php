@@ -1,11 +1,14 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> <!-- Link ke Bootstrap Icons -->
+
     <title>Export PDF</title> 
 </head> 
 <body> 
     <h2>Laporan Peminjaman</h2> 
-    <table> 
+    <table class="table table-bordered"> 
         <thead> 
             <tr> 
                 <th>ID Peminjaman</th> 

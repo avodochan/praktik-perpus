@@ -46,11 +46,6 @@
             <input type="date" id="tgl_pinjam" name="tgl_pinjam" class="form-control" value="{{ old('tgl_pinjam') }}" required>
         </div>
 
-        <div class="mb-3">
-            <label for="tgl_kembali" class="form-label">Tanggal Kembali</label>
-            <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" value="{{ old('tgl_kembali') }}">
-        </div>
-        
         <button type="submit" class="btn btn-success">Simpan Peminjaman</button>
     </form>
 </div>

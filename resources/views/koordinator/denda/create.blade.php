@@ -24,7 +24,7 @@
                 <option value="">Nama Member</option>
                 @foreach ($peminjaman as $p)
                 <option value="{{ $p->id_pinjem}}" {{ old('id_pinjem') == $p->id_pinjem? 'selected' : '' }}>
-                    {{ $p->member->nama }}
+                    {{ $p->member->nama }} - {{$p->buku->judul}}
                 </option>
                 @endforeach
             </select>
@@ -46,7 +46,6 @@
         </div>
         
         <button type="submit" class="btn btn-success">Simpan Denda</button>
-        <a href="{{ route('buku.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

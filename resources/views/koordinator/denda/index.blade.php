@@ -1,22 +1,17 @@
 @extends('layouts.app')
-
+@extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <a href="/" class="btn btn-primary">Dashboard</a>
-            <a href="/koordinator/kategori" class="btn btn-primary">Lihat Kategori</a>
-            <a href="/koordinator/buku" class="btn btn-primary">Lihat Buku</a>
-            <a href="/koordinator/peminjaman" class="btn btn-primary">Lihat Peminjaman</a>
-            <a href="/koordinator/denda" class="btn btn-primary">Lihat Denda</a>
-            <a href="/koordinator/member" class="btn btn-primary">Lihat Member</a>
-    <h1>Daftar Denda</h1>
-
-    <a href="{{ route('denda.create') }}" class="btn btn-primary mb-3">Tambah Denda</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Daftar Denda</h2>
+        <a href="{{ route('denda.create') }}" class="btn btn-primary">Tambah Denda</a>
+    </div>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID Denda</th>
@@ -30,9 +25,9 @@
             @foreach($denda as $d)
                 <tr>
                     <td>{{ $d->id_denda}}</td>
-                    <td>{{ $d->id_pinjem}}</td>
+                    <td>{{ $d->peminjaman->member->nama}}</td>
                     <td>{{ $d->jenis_denda}}</td>
-                    <td>{{ $d->besar_denda}}</td>
+                    <td>Rp {{ number_format($d->besar_denda, 0, ',', '.') }}</td>
                     <td>
                         <a href="{{ route('denda.edit', $d->id_denda) }}" class="btn btn-warning btn-sm">Edit</a>
 

@@ -42,7 +42,16 @@ class KategoriController extends Controller
             'nama_kategori' => $request->nama_kategori,
         ]);
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan!');
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $kategori = Kategori::all();
+            return redirect()->route('koordinator.kategori.view')
+                ->with('success', 'Kategori berhasil ditambahkan.');
+        } elseif ($user->role == 'admin') {
+            $kategori = Kategori::all();
+            return redirect()->route('admin.kategori.view')
+                ->with('success', 'Kategori berhasil ditambahkan.');
+        }
     }
 
     /**
@@ -71,8 +80,16 @@ class KategoriController extends Controller
         ]);
 
         $kategori->update($request->all());
-
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui!');
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $kategori = Kategori::all();
+            return redirect()->route('koordinator.kategori.view')
+                ->with('success', 'Kategori berhasil diperbarui.');
+        } elseif ($user->role == 'admin') {
+            $kategori = Kategori::all();
+            return redirect()->route('admin.kategori.view')
+                ->with('success', 'Kategori berhasil diperbarui.');
+        }
     }
 
     /**
@@ -81,7 +98,15 @@ class KategoriController extends Controller
     public function destroy(kategori $kategori)
     {
         $kategori->delete();
-
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus!');
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $kategori = Kategori::all();
+            return redirect()->route('koordinator.kategori.view')
+                ->with('success', 'Kategori berhasil dihapus.');
+        } elseif ($user->role == 'admin') {
+            $kategori = Kategori::all();
+            return redirect()->route('admin.kategori.view')
+                ->with('success', 'Kategori berhasil dihapus.');
+        }
     }
 }

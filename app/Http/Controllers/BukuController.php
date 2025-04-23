@@ -62,8 +62,17 @@ class BukuController extends Controller
         
         //menyimpan input yang ada di variable $data ke dalam table
         Buku::create($data);
-        //setelah data di simpan maka akan mengarah ke halaman buku.index
-        return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan!');
+        $user = auth()->user();
+
+        if ($user->role == 'koordinator') {
+            $buku = Buku::all();
+            return redirect()->route('koordinator.buku.view')
+                ->with('success', 'Buku berhasil ditambahkan.');
+        } elseif ($user->role == 'admin') {
+            $buku = Buku::all();
+            return redirect()->route('admin.buku.view')
+                ->with('success', 'Buku berhasil ditambahkan.');
+        }
     }
 
 
@@ -109,8 +118,16 @@ class BukuController extends Controller
 
         //update semua data
         $buku->update($request->all());
-        //mengarahkan ke halaman route buku.index
-        return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui.');
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $buku = Buku::all();
+            return redirect()->route('koordinator.buku.view')
+                ->with('success', 'Buku berhasil diperbarui.');
+        } elseif ($user->role == 'admin') {
+            $buku = Buku::all();
+            return redirect()->route('admin.buku.view')
+                ->with('success', 'Buku berhasil diperbarui.');
+        }
     }
 
     /**
@@ -119,5 +136,15 @@ class BukuController extends Controller
     public function destroy(buku $buku)
     {
         $buku->delete();
-        return redirect()->route('buku.index')->with('success', 'Buku berhasil dihapus!');    }
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $buku = Buku::all();
+            return redirect()->route('koordinator.buku.view')
+                ->with('success', 'Buku berhasil dihapus.');
+        } elseif ($user->role == 'admin') {
+            $buku = Buku::all();
+            return redirect()->route('admin.buku.view')
+                ->with('success', 'Buku berhasil dihapus.');
+        }
+    }
 }

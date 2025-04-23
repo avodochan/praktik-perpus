@@ -1,19 +1,13 @@
 @extends('layouts.app')
-
+@extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <a href="/" class="btn btn-primary">Dashboard</a>
-            <a href="/koordinator/kategori" class="btn btn-primary">Lihat Kategori</a>
-            <a href="/koordinator/buku" class="btn btn-primary">Lihat Buku</a>
-            <a href="/koordinator/peminjaman" class="btn btn-primary">Lihat Peminjaman</a>
-            <a href="/koordinator/denda" class="btn btn-primary">Lihat Denda</a>
-            <a href="/koordinator/member" class="btn btn-primary">Lihat Member</a>
     <h1>Daftar Member</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID Member</th>

@@ -49,15 +49,14 @@ class DendaController extends Controller
             'besar_denda' => $request->besar_denda,
         ]);
         $user = auth()->user();
-        if($user->role =='koordinator')
-        {
+        if ($user->role == 'koordinator') {
             $denda = Denda::all();
-            return view('koordinator.denda.index', compact ('denda'))->with('success', 'Data denda berhasil ditambahkan');
-        }
-        elseif($user->role =='admin')
-        {
+            return redirect()->route('koordinator.denda.view')
+                ->with('success', 'Denda berhasil ditambahkan.');
+        } elseif ($user->role == 'admin') {
             $denda = Denda::all();
-            return view('admin.denda.index', compact ('denda'))->with('success', 'Data denda berhasil ditambahkan');
+            return redirect()->route('admin.denda.view')
+                ->with('success', 'Denda berhasil ditambahkan.');
         }
     }
 
@@ -90,8 +89,17 @@ class DendaController extends Controller
             'besar_denda' => 'required|numeric',
         ]);
         $denda->update( $request->all());
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $denda = Denda::all();
+            return redirect()->route('koordinator.denda.view')
+                ->with('success', 'Denda berhasil diperbarui.');
+        } elseif ($user->role == 'admin') {
+            $denda = Denda::all();
+            return redirect()->route('admin.denda.view')
+                ->with('success', 'Denda berhasil diperbarui.');
+        }
         
-        return redirect()->route('denda.index')->with('success', 'Denda berhasil diupdate');
     }
 
     /**
@@ -101,6 +109,15 @@ class DendaController extends Controller
     {
         $denda->delete();
 
-        return redirect()->route('denda.index')->with('success', 'Denda berhasil dihapus');
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $denda = Denda::all();
+            return redirect()->route('koordinator.denda.view')
+                ->with('success', 'Denda berhasil dihapus.');
+        } elseif ($user->role == 'admin') {
+            $denda = Denda::all();
+            return redirect()->route('admin.denda.view')
+                ->with('success', 'Denda berhasil dihapus.');
+        }
     }
 }

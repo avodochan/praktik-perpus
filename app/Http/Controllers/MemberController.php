@@ -67,8 +67,16 @@ class MemberController extends Controller
         ]);
 
         $member->update($request->all());
-        return redirect()->route('member.index')->with('success', 'Member berhasil diperbarui.');
-    }
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $member = Member::all();
+            return redirect()->route('koordinator.member.view')
+                ->with('success', 'Member berhasil diperbarui.');
+        } elseif ($user->role == 'admin') {
+            $member = Member::all();
+            return redirect()->route('admin.member.view')
+                ->with('success', 'Member berhasil diperbarui.');
+        }    }
 
     /**
      * Remove the specified resource from storage.
@@ -76,6 +84,15 @@ class MemberController extends Controller
     public function destroy(member $member)
     {
         $member->delete();
-        return redirect()->route('member.index')->with('success', 'Member berhasil dihapus.');
+        $user = auth()->user();
+        if ($user->role == 'koordinator') {
+            $member = Member::all();
+            return redirect()->route('koordinator.member.view')
+                ->with('success', 'Member berhasil dihapus.');
+        } elseif ($user->role == 'admin') {
+            $member = Member::all();
+            return redirect()->route('admin.member.view')
+                ->with('success', 'Member berhasil dihapus.');
+        }
     }
 }

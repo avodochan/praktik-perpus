@@ -1,30 +1,28 @@
 @extends('layouts.app')
-
+@extends('layouts.navbar')
 @section('content')
-            <a href="/" class="btn btn-primary">Dashboard</a>
-            <a href="/koordinator/kategori" class="btn btn-primary">Lihat Kategori</a>
-            <a href="/koordinator/buku" class="btn btn-primary">Lihat Buku</a>
-            <a href="/koordinator/peminjaman" class="btn btn-primary">Lihat Peminjaman</a>
-            <a href="/koordinator/denda" class="btn btn-primary">Lihat Denda</a>
-            <a href="/koordinator/member" class="btn btn-primary">Lihat Member</a>
-    <h1>Daftar Buku</h1>
-    <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
+            
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Daftar Buku</h2>
+        <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
+    </div>
+
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID Buku</th>
-                <th>Kategori</th>
-                <th>Cover</th>
-                <th>Judul</th>
-                <th>Penulis</th>
-                <th>Penerbit</th>
-                <th>Stok</th>
-                <th>Aksi</th>
+                <th style="text-align: center">ID Buku</th>
+                <th style="text-align: center">Kategori</th>
+                <th style="text-align: center">Cover</th>
+                <th style="text-align: center">Judul</th>
+                <th style="text-align: center">Penulis</th>
+                <th style="text-align: center">Penerbit</th>
+                <th style="text-align: center">Stok</th>
+                <th style="text-align: center">Aksi</th>
             </tr>
         </thead>
         <tbody>

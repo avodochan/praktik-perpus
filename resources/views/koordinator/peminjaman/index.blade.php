@@ -1,31 +1,34 @@
 @extends('layouts.app')
-
+@extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <a href="/" class="btn btn-primary">Dashboard</a>
-            <a href="/koordinator/kategori" class="btn btn-primary">Lihat Kategori</a>
-            <a href="/koordinator/buku" class="btn btn-primary">Lihat Buku</a>
-            <a href="/koordinator/peminjaman" class="btn btn-primary">Lihat Peminjaman</a>
-            <a href="/koordinator/denda" class="btn btn-primary">Lihat Denda</a>
-            <a href="/koordinator/member" class="btn btn-primary">Lihat Member</a>
-    <h1>Daftar Peminjaman</h1>
-
-    <a href="{{ route('peminjaman.create') }}" class="btn btn-primary mb-3">Tambah Peminjaman</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Daftar Peminjaman</h2>
+        <a href="{{ route('peminjaman.create') }}" class="btn btn-primary">Tambah Peminjaman</a>
+    </div>
     
     <form action="{{ route('peminjaman.export') }}" method="GET" target="_blank">
-        <label>Periode Awal :</label>
-        <input type="date" name="periodeawal" required>
-        <label>Periode Akhir :</label>
-        <input type="date" name="periodeakhir" required>
-        
-        <button type="submit" class="btn btn-primary mb-3">Export Peminjaman</button>
+        <div class="row">
+            <div class="col-3">
+                <label for="periodeawal" class="form-label">Periode Awal:</label>
+                <input type="date" name="periodeawal" id="periodeawal" class="form-control" required>
+            </div>
+            <div class="col-3">
+                <label for="periodeakhir" class="form-label">Periode Akhir:</label>
+                <input type="date" name="periodeakhir" id="periodeakhir" class="form-control" required>                
+            </div>
+            <div class="col-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-outline-success w-100">Export Peminjaman</button>               
+            </div>
+        </div>
     </form>
-        
+ 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <br>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID Peminjaman</th>

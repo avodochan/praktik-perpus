@@ -21,7 +21,6 @@
         </div>
 
         <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="{{ route('kategori.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

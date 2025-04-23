@@ -35,21 +35,7 @@ Route::get('/login', [AuthController::class, 'showlogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-//admin routes
-Route::middleware(['auth', 'checkrole:admin'])->group(function() 
-{
-    Route::resource('kategori', KategoriController::class);
-    Route::get('/admin/kategori', [KategoriController::class, 'index'])->name('admin.kategori.view');
-    Route::resource('buku', BukuController::class);
-    Route::get('/admin/buku', [BukuController::class, 'index'])->name('admin.buku.view');
-    Route::resource('peminjaman', PeminjamanController::class);
-    Route::get('/admin/peminjaman', [PeminjamanController::class, 'index'])->name('admin.peminjaman.view');
-    Route::resource('member', MemberController::class);
-    Route::get('/admin/member', [MemberController::class, 'index'])->name('admin.member.view');
-    Route::resource('denda', DendaController::class);
-    Route::get('/admin/denda', [DendaController::class, 'index'])->name('admin.denda.view');
-});
-
+//koordinator routes
 Route::middleware(['auth', 'checkrole:koordinator'])->group(function() 
 {
     Route::resource('kategori', KategoriController::class)->except('kategori.destroy');
@@ -64,6 +50,21 @@ Route::middleware(['auth', 'checkrole:koordinator'])->group(function()
     Route::resource('denda', DendaController::class);
     Route::get('/koordinator/denda', [DendaController::class, 'koordinatorview'])->name('koordinator.denda.view');
 
+});
+
+//admin routes
+Route::middleware(['auth', 'checkrole:admin'])->group(function() 
+{
+    Route::resource('kategori', KategoriController::class);
+    Route::get('/admin/kategori', [KategoriController::class, 'index'])->name('admin.kategori.view');
+    Route::resource('buku', BukuController::class);
+    Route::get('/admin/buku', [BukuController::class, 'index'])->name('admin.buku.view');
+    Route::resource('peminjaman', PeminjamanController::class);
+    Route::get('/admin/peminjaman', [PeminjamanController::class, 'index'])->name('admin.peminjaman.view');
+    Route::resource('member', MemberController::class);
+    Route::get('/admin/member', [MemberController::class, 'index'])->name('admin.member.view');
+    Route::resource('denda', DendaController::class);
+    Route::get('/admin/denda', [DendaController::class, 'index'])->name('admin.denda.view');
 });
 
 //user routes

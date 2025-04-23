@@ -32,7 +32,7 @@ class denda extends Model
     
     public function peminjaman()
     {
-        return $this->hasMany(Peminjaman::class, 'id_pinjem', 'id_pinjem');
+        return $this->belongsTo(Peminjaman::class, 'id_pinjem', 'id_pinjem');
     }
     
 }

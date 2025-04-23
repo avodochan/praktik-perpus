@@ -1,15 +1,14 @@
 @extends('layouts.app')
-
+@extends('layouts.usernavbar')
 @section('content')
     <h1>Daftar Buku</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <table class="table ">
         <thead>
             <tr>
-                <th>ID Buku</th>
                 <th>Cover</th>
                 <th>Judul</th>
                 <th>Penulis</th>
@@ -20,7 +19,6 @@
         <tbody>
             @foreach($buku as $b)
                 <tr>
-                    <td>{{ $b->id_buku }}</td>
                     <td>
                         @if($b->cover)
                             <img src="{{ asset('storage/' . $b->cover) }}" alt="Cover Buku" width="80">
