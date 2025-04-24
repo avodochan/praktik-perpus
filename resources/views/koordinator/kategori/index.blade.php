@@ -21,6 +21,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping untuk menampilkandata  --}}
             @foreach($kategori as $k)
                 <tr>
                     <td>{{ $k->id }}</td>

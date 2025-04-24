@@ -13,7 +13,8 @@
             </ul>
         </div>
     @endif
-
+    
+    {{-- form untuk menambah peminjaman --}}
     <form action="{{ route('peminjaman.store') }}" method="POST">
         @csrf
 
@@ -21,6 +22,7 @@
             <label for="id_buku" class="form-label">Judul Buku</label>
             <select class="form-select" id="id_buku" name="id_buku" required>
                 <option value="">-- Pilih Buku --</option>
+                {{-- looping judul buku dari objek buku (sudah didefinisikan di controller) --}}
                 @foreach($buku as $b)
                 <option value="{{ $b->id_buku }}" {{ old('id_buku') == $b->id_buku ? 'selected' : '' }}>
                     {{ $b->judul }}
@@ -33,6 +35,7 @@
             <label for="id_member" class="form-label">Member</label>
             <select class="form-select" id="id_member" name="id_member" required>
                 <option value="">-- Pilih Member --</option>
+                {{-- looping nama member dari objek member (didefinisikan di controller) --}}
                 @foreach($members as $m)
                 <option value="{{ $m->id_member }}" {{ old('id_member') == $m->id_member ? 'selected' : '' }}>
                     {{ $m->nama }}
@@ -44,6 +47,11 @@
         <div class="mb-3">
             <label for="tgl_pinjam" class="form-label">Tanggal Pinjam</label>
             <input type="date" id="tgl_pinjam" name="tgl_pinjam" class="form-control" value="{{ old('tgl_pinjam') }}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="tgl_pinjam" class="form-label">Tanggal Kembali Seharusnya</label>
+            <input type="date" id="tgl_kembali_seharusnya" name="tgl_kembali_seharusnya" class="form-control" value="{{ old('tgl_kembali_seharusnya') }}" required>
         </div>
 
         <button type="submit" class="btn btn-success">Simpan Peminjaman</button>

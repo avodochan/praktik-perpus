@@ -44,13 +44,13 @@
         <div class="mb-3">
             <label for="tgl_pinjam_display" class="form-label">Tanggal Pinjam</label>
             <input type="text" id="tgl_pinjam_display" class="form-control" value="{{ Carbon\Carbon::parse($peminjaman->tgl_pinjam)->format('d-m-Y') }}" readonly>
-            <!-- Hidden input untuk menyimpan nilai asli format Y-m-d -->
+            <!--hidden input untuk menyimpan nilai asli ke database dengan format Y-m-d -->
             <input type="hidden" name="tgl_pinjam" value="{{ $peminjaman->tgl_pinjam }}">
         </div>
 
         <div class="mb-3">
             <label for="tgl_kembali_seharusnya" class="form-label">Tanggal Kembali Seharusnya</label>
-            <input type="text" id="tgl_kembali_seharusnya" class="form-control" value="{{ Carbon\Carbon::parse($peminjaman->tgl_pinjam)->addDays(7)->format('d-m-Y') }}" readonly>
+            <input type="text" id="tgl_kembali_seharusnya" class="form-control" value="{{ Carbon\Carbon::parse($peminjaman->tgl_kembali_seharusnya)->format('d-m-Y') }}" readonly>
         </div>
         
         <div class="mb-3">
@@ -59,15 +59,14 @@
         </div>
         
         <div class="mb-3">
-            <label for="kondisi_buku">Kondisi Buku saat Dikembalikan:</label>
-    <select name="kondisi_buku" id="kondisi_buku" class="form-control @error('kondisi_buku') is-invalid @enderror" required>
-        <option value="baik">Baik</option>
-        <option value="rusak">Rusak</option>
-        <option value="hilang">Hilang</option>
-    </select>
-    @error('kondisi_buku')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
+            <select name="kondisi_buku" id="kondisi_buku" class="form-control @error('kondisi_buku') is-invalid @enderror" hidden>
+                <option value="baik">Baik</option>
+                <option value="rusak">Rusak</option>
+                <option value="hilang">Hilang</option>
+            </select>
+            @error('kondisi_buku')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         
         <button type="submit" class="btn btn-success">Simpan Peminjaman</button>

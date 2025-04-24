@@ -22,6 +22,8 @@
             <select class="form-select" id="id_buku" name="id_buku" required>
                 <option value="">-- Pilih Buku --</option>
                 @foreach($buku as $b)
+                {{-- get data buku by id --}}
+                {{-- namun yang ditampilkan di dropdown adalah judul bukunya --}}
                 <option value="{{ $b->id_buku }}" {{ old('id_buku') == $b->id_buku ? 'selected' : '' }}>
                     {{ $b->judul }}
                 </option>

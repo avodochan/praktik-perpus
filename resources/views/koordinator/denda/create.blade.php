@@ -14,9 +14,10 @@
         </div>
     @endif
 
+    {{-- form untuk menambahkan denda --}}
+    {{-- form ini sudah tiadk digunakan karena sudah menghitung denda otomatis --}}
     <form action="{{ route('denda.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         
         <div class="mb-3">
             <label for="id_pinjem" class="form-label">Nama Member</label>

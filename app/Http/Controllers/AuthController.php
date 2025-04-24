@@ -23,8 +23,9 @@ class AuthController extends Controller
         'email' => $request->email,
         'password' => bcrypt($request->password),
       ]);
-        
-        //input data ke tabel member
+      
+      //input data ke tabel member
+      //jadi saat user melakukan register, kata data dari objek user otomatis masuk ke dalam tabel user dan tabel member
       Member::create([
         'id_user' => $user->id,
         'nama' => $request->nama,
@@ -44,18 +45,27 @@ class AuthController extends Controller
    }
    
    public function login(Request $request)
-   {
+  {
+      //validasi input
+      $request->validate([ //request adalah objek
+          'email' => 'required|email',
+          'password' => 'required',
+      ]);
+
       $user = User::where('email', $request->email)->first(); //mencari data yang ada berdasarkan inputan
-      if ($user && Hash::check($request->password, $user->password)) { //kondisi jika data user ada dan password yang ada pada database sama dengan inputan
-        Auth::login($user); //login berdasarkan user yang ditemukan
-        return redirect()->route('user.index'); //jika benar maka akan meredirect ke halaman dashboard user
+      
+      if ($user && Hash::check($request->password, $user->password)) 
+      { //kondisi jika data user ada dan password yang ada pada database sama dengan inputan
+          Auth::login($user, $request->has('remember')); //login berdasarkan user yang ditemukan dan remember jika dicentang
+          return redirect()->route('user.index'); //jika benar maka akan meredirect ke halaman dashboard user
       }
-      else {
-        return redirect()->back()->with('error', 'Email atau Password salah'); //jika salah maka akan kembali ke halaman login dengan validasi error
+      else 
+      {
+          return redirect()->back()->withInput($request->only('email'))->with('error', 'Email atau Password salah'); //jika salah maka akan kembali ke halaman login dengan validasi error
       }
-   }
+  }
    
-   public function logout()
+   public function logout()//logout adalah method
    {
       Auth::logout(); //logout user
       return redirect()->route('login'); //redirect ke halaman login

@@ -14,6 +14,8 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    
+    //method untuk edit user
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -26,9 +28,11 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        //jika dari objek request terisi, maka validasi
         $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
+        if ($request->user()->isDirty('email')) 
+        {
             $request->user()->email_verified_at = null;
         }
 

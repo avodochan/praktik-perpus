@@ -4,6 +4,7 @@
 <div class="container">
     <h1>Edit</h1>
 
+    {{-- get error apapun --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -13,7 +14,8 @@
             </ul>
         </div>
     @endif
-
+    
+    {{-- edit adta denda sesuai dengan id yang dipilih --}}
     <form action="{{ route('denda.update', $denda->id_denda) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -29,16 +31,15 @@
             </select>
         </div>
         
+        {{-- jenis denda default adalah terlambat --}}
         <div class="mb-3">
-            <label for="id_denda" class="form-label">Jenis Denda</label>
-            <select id="jenis_denda" name="jenis_denda" class="form-control" required>
-                <option value="">Pilih Jenis Denda</option>
-                    <option value="Hilang">Hilang</option>
-                    <option value="Rusak">Rusak</option>
+            <select id="jenis_denda" name="jenis_denda" class="form-control" hidden>
                     <option value="Terlambat">Terlambat</option>
             </select>
         </div>
         
+        {{-- edit besar denda --}}
+        {{-- default besar denda diambil dari method update peminjaman --}}
         <div class="mb-3">
             <label for="besar_denda" class="form-label">Besar Denda</label>
             <input type="integer" id="besar_denda" name="besar_denda" class="form-control" value="{{ old('besar_denda') ?? $denda->besar_denda}}" required>

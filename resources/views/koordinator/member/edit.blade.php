@@ -14,6 +14,7 @@
         </div>
     @endif
 
+    {{-- get id member yang akan diedit --}}
     <form action="{{ route('member.update', $member->id_member)}}" method="POST">
         @csrf
         @method('PUT')

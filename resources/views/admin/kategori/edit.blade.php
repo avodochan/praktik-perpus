@@ -14,6 +14,7 @@
         </div>
     @endif
 
+    {{-- update kategori berdasarkan data yang dipilih --}}
     <form action="{{ route('kategori.update', $kategori->id) }}" method="POST">
         @csrf
         @method('PUT')

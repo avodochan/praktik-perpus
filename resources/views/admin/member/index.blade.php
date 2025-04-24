@@ -20,6 +20,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping data untuk menampilkan --}}
             @foreach($member as $m)
                 <tr>
                     <td>{{ $m->id_member }}</td>

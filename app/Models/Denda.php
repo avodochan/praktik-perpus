@@ -31,6 +31,7 @@ class denda extends Model
         });  
     }
     
+    //relasi ke tabel lain
     public function peminjaman()
     {
         return $this->belongsTo(Peminjaman::class, 'id_pinjem', 'id_pinjem');

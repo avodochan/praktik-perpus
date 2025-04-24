@@ -15,14 +15,22 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        $user = auth()->user();
-        if ($user->role === $role) {
+        $user = auth()->user(); //cek user yang login
+        if ($user->role === 'koordinator') 
+        {
             return $next($request);
         }
+        //jika user role adalah admin
         elseif($user->role === 'admin')
         {
             return $next($request);
         }
+        //jika user role yang login adalah user (member)
+        elseif($user->role === 'user')
+        {
+            return $next($request);
+        }
+        //jika tidak ketiganya
         else {
             return redirect()->back();
         }

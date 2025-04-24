@@ -3,6 +3,7 @@
 @section('content')
     <h1>Daftar Denda</h1>
     
+    {{-- jumlah denda yang harus dibayarkan (sudah didefinisikan di controller) --}}
     <div class="alert alert-info" role="alert">
         Jumlah denda yang harus dibayarkan Rp {{ number_format($totalNominal, 0, ',', '.') }}
     </div>
@@ -23,7 +24,7 @@
         <tbody>
             @foreach($denda as $d)
                 <tr>
-                    <td>{{ $d->peminjaman->tgl_pinjam }}</td>
+                    <td>{{ $d->peminjaman->tgl_pinjam_formatted }}</td>
                     <td>{{ $d->peminjaman->buku->judul }}</td>
                     <td>{{ $d->jenis_denda }}</td>
                     <td>Rp {{ number_format($d->besar_denda, 0, ',', '.') }}</td>

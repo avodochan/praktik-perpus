@@ -17,6 +17,9 @@
             <span class="navbar-toggler-icon"></span>
           </button>
       
+          {{-- menu apa saja yang akan ditampilkan di role admin --}}
+          {{-- jika requestnya sedang aktif, maka teksnya akan menggunakan class primary bold (biru cetak tebal) --}}
+          {{-- jika requestnya sedang tidak aktid, maka teksnya akan menggunakan class dark (hitam) --}}
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link {{ Request::is('/') ? 'text-primary fw-bold' : 'text-dark' }}" href="{{ url('/') }}">Dashboard</a>
@@ -25,6 +28,7 @@
               <a class="nav-link {{ Request::is('admin/peminjaman*') ? 'text-primary fw-bold' : 'text-dark' }}" href="{{ url('/admin/peminjaman') }}">Peminjaman</a>
               <a class="nav-link {{ Request::is('admin/denda*') ? 'text-primary fw-bold' : 'text-dark' }}" href="{{ url('/admin/denda') }}">Denda</a>
               <a class="nav-link {{ Request::is('admin/member*') ? 'text-primary fw-bold' : 'text-dark' }}" href="{{ url('/admin/member') }}">Member</a>
+              {{-- fungsi logout dengan teks bercetak warna merah --}}
               <form action="{{ route('logout') }}" method="POST">
                 <a href="{{ route('logout') }}" class="nav-link text-danger fw-bold">Logout</a>
                 </form>

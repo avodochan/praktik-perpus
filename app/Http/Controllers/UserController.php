@@ -1,25 +1,43 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Peminjaman;
+use App\Models\Kategori;
+use App\Models\Buku;
+use App\Models\Member;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index()//index adalah method
     {
-        $user = auth()->user();
+        $user = auth()->user(); //cek user yang login
+        //jika role user yang login adalah koordinator
         if($user->role =='koordinator')
         {
-            return view('koordinator.dashboard');
+            $hitungPeminjaman = Peminjaman::count();
+            $hitungBuku = Buku::count();
+            $hitungKategori = Kategori::count();
+            $hitungMember = Member::count();
+            return view('koordinator.dashboard', compact('hitungPeminjaman', 'hitungBuku', 'hitungKategori', 'hitungMember'));
         }
+        //jika role user yang login adalah admin
         elseif($user->role =='admin')
         {
-            return view('admin.dashboard');
+            $hitungPeminjaman = Peminjaman::count();
+            $hitungBuku = Buku::count();
+            $hitungKategori = Kategori::count();
+            $hitungMember = Member::count();
+            return view('admin.dashboard', compact('hitungPeminjaman', 'hitungBuku', 'hitungKategori', 'hitungMember'));
         }
-        else{
-            return view('user.dashboard');
+        //jika bukan keduanya
+        else
+        {
+            $buku = Buku::orderBy('judul', 'asc')->get();
+            $hitungBuku = Buku::count();
+            return view('user.dashboard', compact ('buku','hitungBuku'));
         }
     }
     

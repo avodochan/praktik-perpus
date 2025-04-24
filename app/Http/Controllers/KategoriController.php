@@ -10,11 +10,13 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index()//index adalah method
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::all(); //kategor adalah objek
         return view('admin.kategori.index', compact('kategori'));
     }
+    
+    //view untuk role koordinator
     public function koordinatorview()
     {
         $kategori = Kategori::all();
@@ -34,6 +36,8 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        //request adalah objek
+        //validate merupakan validasi untuk input
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
         ]);
@@ -42,15 +46,16 @@ class KategoriController extends Controller
             'nama_kategori' => $request->nama_kategori,
         ]);
 
-        $user = auth()->user();
-        if ($user->role == 'koordinator') {
+        $user = auth()->user(); //cek user yang login
+        if ($user->role == 'koordinator') 
+        {
             $kategori = Kategori::all();
-            return redirect()->route('koordinator.kategori.view')
-                ->with('success', 'Kategori berhasil ditambahkan.');
-        } elseif ($user->role == 'admin') {
+            return redirect()->route('koordinator.kategori.view')->with('success', 'Kategori berhasil ditambahkan.');
+        } 
+        elseif ($user->role == 'admin') 
+        {
             $kategori = Kategori::all();
-            return redirect()->route('admin.kategori.view')
-                ->with('success', 'Kategori berhasil ditambahkan.');
+            return redirect()->route('admin.kategori.view')->with('success', 'Kategori berhasil ditambahkan.');
         }
     }
 
@@ -79,16 +84,17 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        $kategori->update($request->all());
+        //update data dari objek kategori
+        $kategori->update($request->all()); //cek user yang sedang login
         $user = auth()->user();
-        if ($user->role == 'koordinator') {
+        if ($user->role == 'koordinator') 
+        {
             $kategori = Kategori::all();
-            return redirect()->route('koordinator.kategori.view')
-                ->with('success', 'Kategori berhasil diperbarui.');
-        } elseif ($user->role == 'admin') {
+            return redirect()->route('koordinator.kategori.view')->with('success', 'Kategori berhasil diperbarui.');
+        } 
+        elseif ($user->role == 'admin') {
             $kategori = Kategori::all();
-            return redirect()->route('admin.kategori.view')
-                ->with('success', 'Kategori berhasil diperbarui.');
+            return redirect()->route('admin.kategori.view')->with('success', 'Kategori berhasil diperbarui.');
         }
     }
 
@@ -99,14 +105,15 @@ class KategoriController extends Controller
     {
         $kategori->delete();
         $user = auth()->user();
-        if ($user->role == 'koordinator') {
+        if ($user->role == 'koordinator') 
+        {
             $kategori = Kategori::all();
-            return redirect()->route('koordinator.kategori.view')
-                ->with('success', 'Kategori berhasil dihapus.');
-        } elseif ($user->role == 'admin') {
+            return redirect()->route('koordinator.kategori.view')->with('success', 'Kategori berhasil dihapus.');
+        } 
+        elseif ($user->role == 'admin') 
+        {
             $kategori = Kategori::all();
-            return redirect()->route('admin.kategori.view')
-                ->with('success', 'Kategori berhasil dihapus.');
+            return redirect()->route('admin.kategori.view')->with('success', 'Kategori berhasil dihapus.');
         }
     }
 }

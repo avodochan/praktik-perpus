@@ -14,6 +14,7 @@
         </div>
     @endif
 
+    {{-- form untuk menambahkan buku --}}
     <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 

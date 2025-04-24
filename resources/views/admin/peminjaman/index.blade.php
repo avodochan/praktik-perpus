@@ -26,14 +26,17 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping untuk menampilkan data --}}
             @foreach($peminjaman as $p)
                 <tr>
                     <td>{{ $p->id_pinjem }}</td>
                     <td>{{ $p->buku->judul}}</td>
                     <td>{{ $p->member->nama}}</td>
+                    {{-- tgl_ppinjam_formatted sebelumnya sudah didefinisikan di model --}}
                     <td>{{ $p->tgl_pinjam_formatted }}</td>
                     <td>{{ $p->tgl_kembali_seharusnya }}</td>
                     <td>{{ $p->tgl_kembali_sebenarnya ?? '-'}}</td>
+                    {{-- get status --}}
                     <td>
                         <span class="badge bg-{{ $p['status_class'] }}">{{ $p['status_text'] }}</span>
                     </td>

@@ -10,9 +10,9 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index()//index adalah method
     {
-        $member = Member::all();
+        $member = Member::all(); //get data member
         return view('admin.member.index', compact('member'));
     }
     public function koordinatorview()
@@ -68,31 +68,34 @@ class MemberController extends Controller
 
         $member->update($request->all());
         $user = auth()->user();
-        if ($user->role == 'koordinator') {
+        if ($user->role == 'koordinator') 
+        {
             $member = Member::all();
-            return redirect()->route('koordinator.member.view')
-                ->with('success', 'Member berhasil diperbarui.');
-        } elseif ($user->role == 'admin') {
+            return redirect()->route('koordinator.member.view')->with('success', 'Member berhasil diperbarui.');
+        } 
+        elseif ($user->role == 'admin') 
+        {
             $member = Member::all();
-            return redirect()->route('admin.member.view')
-                ->with('success', 'Member berhasil diperbarui.');
-        }    }
+            return redirect()->route('admin.member.view')->with('success', 'Member berhasil diperbarui.');
+        }    
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(member $member)
     {
-        $member->delete();
+        $member->delete(); //function hapus member
         $user = auth()->user();
-        if ($user->role == 'koordinator') {
+        if ($user->role == 'koordinator') 
+        {
             $member = Member::all();
-            return redirect()->route('koordinator.member.view')
-                ->with('success', 'Member berhasil dihapus.');
-        } elseif ($user->role == 'admin') {
+            return redirect()->route('koordinator.member.view')->with('success', 'Member berhasil dihapus.');
+        } 
+        elseif ($user->role == 'admin') 
+        {
             $member = Member::all();
-            return redirect()->route('admin.member.view')
-                ->with('success', 'Member berhasil dihapus.');
+            return redirect()->route('admin.member.view')->with('success', 'Member berhasil dihapus.');
         }
     }
 }

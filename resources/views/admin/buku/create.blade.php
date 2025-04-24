@@ -29,6 +29,7 @@
             </select>
         </div>
 
+        {{-- form untuk mengisi buku --}}
         <div class="mb-3">
             <label for="judul" class="form-label">Judul Buku</label>
             <input type="text" id="judul" name="judul" class="form-control" value="{{ old('judul') }}" required>
@@ -59,6 +60,7 @@
             <textarea id="sinopsis" name="sinopsis" class="form-control" rows="4" required>{{ old('sinopsis') }}</textarea>
         </div>
 
+        {{-- menyimpan buku --}}
         <button type="submit" class="btn btn-success">Simpan Buku</button>
     </form>
 </div>

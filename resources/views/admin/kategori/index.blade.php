@@ -23,13 +23,15 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping untuk menampilkan data --}}
             @foreach($kategori as $k)
                 <tr>
                     <td>{{ $k->id }}</td>
                     <td>{{ $k->nama_kategori}}</td>
                     <td>
+                        {{-- button aksi untuk mengedit data --}}
                         <a href="{{ route('kategori.edit', $k->id) }}" class="btn btn-warning btn-sm">Edit</a>
-
+                        {{-- button aksi untuk menghapus data --}}
                         <form action="{{ route('kategori.destroy', $k->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')

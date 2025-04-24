@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- isi dengan nama aplikasi --}}
-    <title>@yield('title', 'nama aplikasi')</title>
+    <title>@yield('title', 'Perpustakaan')</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +17,7 @@
     <!-- Main Content -->
     <main class="py-4">
         <div class="container">
+            {{-- konten yang akan diisi --}}
             @yield('content')
         </div>
     </main>

@@ -7,25 +7,33 @@
     <title>Export PDF</title> 
 </head> 
 <body> 
+    {{-- judul di laporan --}}
     <h2>Laporan Peminjaman</h2> 
-    <table class="table table-bordered"> 
+    <table border="1"> 
         <thead> 
+            {{-- data yang akan ditampilkan di laporan --}}
             <tr> 
-                <th>ID Peminjaman</th> 
+                <th>ID</th> 
                 <th>Judul Buku</th> 
                 <th>Nama Member</th> 
                 <th>Tanggal Pinjam</th> 
-                <th>Tanggal Kembali</th> 
+                <th>Tanggal Pengembalian</th> 
+                <th>Status</th> 
             </tr> 
         </thead> 
         <tbody> 
+            {{-- looping untuk menampilkan data --}}
             @foreach($data as $p)
                 <tr>
                     <td>{{ $p->id_pinjem }}</td>
                     <td>{{ $p->buku->judul}}</td>
                     <td>{{ $p->member->nama}}</td>
-                    <td>{{ $p->tgl_pinjam}}</td>
-                    <td>{{ $p->tgl_kembali}}</td>
+                    {{-- tgl_pinjam dan tgl_kembali sudah didefinisikan di model (ini adalah attribute) --}}
+                    <td>{{ $p->tgl_pinjam_formatted}}</td>
+                    <td>{{ $p->tgl_kembali_sebenarnya ?? '-'}}</td>
+                    <td>
+                        <span class="badge bg-{{ $p['status_class'] }}">{{ $p['status_text'] }}</span>
+                    </td>
                 </tr>
             @endforeach
         </tbody> 

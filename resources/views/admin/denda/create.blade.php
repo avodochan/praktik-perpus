@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Tambah Denda Baru</h1>
-
+    
+    {{-- get error apapun --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -14,9 +15,10 @@
         </div>
     @endif
 
+    {{-- form untuk menambah denda --}}
+    {{-- form ini sudah tidak terpakai karena denda langsung ditambahkan saat peminjaman --}}
     <form action="{{ route('denda.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        
         <div class="mb-3">
             <label for="id_pinjem" class="form-label">Nama Member</label>
             <select id="id_pinjem" name="id_pinjem" class="form-control" required>

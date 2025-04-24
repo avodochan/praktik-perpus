@@ -22,6 +22,7 @@
             <select id="id_pinjem" name="id_pinjem" class="form-control" required>
                 <option value="">Nama Member</option>
                 @foreach ($peminjaman as $p)
+                {{-- get peminjaman lalu menggunakan relasi ke tabel member dan get nama --}}
                 <option value="{{ $p->id_pinjem}}" {{ old('id_pinjem') ?? $p->id_pinjem == $p->id_pinjem ? 'selected' : '' }}>
                     {{ $p->member->nama }}
                 </option>
@@ -32,9 +33,6 @@
         <div class="mb-3">
             <label for="id_denda" class="form-label">Jenis Denda</label>
             <select id="jenis_denda" name="jenis_denda" class="form-control" required>
-                <option value="">Pilih Jenis Denda</option>
-                    <option value="Hilang">Hilang</option>
-                    <option value="Rusak">Rusak</option>
                     <option value="Terlambat">Terlambat</option>
             </select>
         </div>

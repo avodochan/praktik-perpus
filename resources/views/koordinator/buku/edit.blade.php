@@ -21,7 +21,9 @@
             <label for="id_kategori" class="form-label">Kategori</label>
             <select id="id_kategori" name="id_kategori" class="form-control" required>
                 <option value="">Pilih Kategori</option>
+                {{-- get kategori dari objek kategori (sudah didefinisikan sebelumnya di controller) --}}
                 @foreach ($kategori as $k)
+                {{-- yang di get adalah id kategorinya namun yang ditamppilkan di dropdown adalah nama kategorinya --}}
                     <option value="{{ $k->id }}" {{ old('id') ?? $k->id == $k->id ? 'selected' : '' }}>
                         {{ $k->nama_kategori }}
                     </option>

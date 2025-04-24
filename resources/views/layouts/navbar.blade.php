@@ -17,6 +17,10 @@
             <span class="navbar-toggler-icon"></span>
           </button>
       
+          {{-- menu apa saja yang akan ditampilkan di role admin --}}
+          {{-- jika requestnya sedang aktif, maka teksnya akan menggunakan class primary bold (biru cetak tebal) --}}
+          {{-- jika requestnya sedang tidak aktid, maka teksnya akan menggunakan class dark (hitam) --}}
+          {{-- ini untuk role koordinator --}}
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link {{ Request::is('/') ? 'text-primary fw-bold' : 'text-dark' }}" href="{{ url('/') }}">Dashboard</a>

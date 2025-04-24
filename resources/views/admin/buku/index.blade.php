@@ -25,13 +25,16 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping data buku --}}
             @foreach($buku as $b)
                 <tr>
                     <td>{{ $b->id_buku }}</td>
                     <td>{{ $b->kategori->nama_kategori }}</td>
                     <td>
+                        {{-- jika ada cover maka akan menampilkan--}}
                         @if($b->cover)
                             <img src="{{ asset('storage/' . $b->cover) }}" alt="Cover Buku" width="80">
+                        {{-- jika tidak ada cover maka akan mereturn (tidak ada cover) --}}
                         @else
                             <span>Tidak ada cover</span>
                         @endif
@@ -45,6 +48,7 @@
                         <form action="{{ route('buku.destroy', $b->id_buku) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
+                            {{-- konfirmasi apakah benar data akan dihapus --}}
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
                         </form>
                     </td>

@@ -23,21 +23,21 @@ class Member extends Model
         'no_tlp',
     ];
     
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
     protected static function boot() 
     {
         parent::boot();
         static::creating(function ($member) {
-           $lastmember = Member::orderBy('id_member', 'desc')->first();
-           $lastmember = $lastmember ? intval(substr($lastmember->id_member, 2)) : 0;
-           $member->id_member = 'M' . str_pad($lastmember + 1, 4, '0', STR_PAD_LEFT);
+            $lastmember = Member::orderBy('id_member', 'desc')->first();
+            $lastmember = $lastmember ? intval(substr($lastmember->id_member, 2)) : 0;
+            $member->id_member = 'M' . str_pad($lastmember + 1, 4, '0', STR_PAD_LEFT);
         });  
     }
     
-    
+    //relasi ke tabel lain
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function peminjaman()
     {
         return $this->hasMany(Peminjaman::class, 'id_member', 'id_member');

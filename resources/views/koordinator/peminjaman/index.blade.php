@@ -4,9 +4,12 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Daftar Peminjaman</h2>
+        {{-- button untuk menambah peminjaman --}}
         <a href="{{ route('peminjaman.create') }}" class="btn btn-primary">Tambah Peminjaman</a>
     </div>
     
+    
+    {{-- form untuk melakukan export --}}
     <form action="{{ route('peminjaman.export') }}" method="GET" target="_blank">
         <div class="row">
             <div class="col-3">
@@ -21,6 +24,7 @@
                 <button type="submit" class="btn btn-outline-success w-100">Export Peminjaman</button>               
             </div>
         </div>
+        <br>
     </form>
  
     @if(session('success'))
@@ -30,10 +34,11 @@
     <br>
     <table class="table table-bordered">
         <thead>
+            {{-- data apa saja yang akan ditampilkan --}}
             <tr>
                 <th>ID Peminjaman</th>
-                <th>ID Buku</th>
-                <th>ID Member</th>
+                <th>Judul Buku</th>
+                <th>Nama Member</th>
                 <th>Tanggal Pinjam</th>
                 <th>Tanggal Kembali Seharusnya</th>
                 <th>Tanggal Kembali Sebenarnya</th>
@@ -42,11 +47,13 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping untuk menampilkan data --}}
             @foreach($peminjaman as $p)
                 <tr>
                     <td>{{ $p->id_pinjem }}</td>
                     <td>{{ $p->buku->judul}}</td>
                     <td>{{ $p->member->nama}}</td>
+                    {{-- sebelumnya sudah didefinisikan di model dan controller --}}
                     <td>{{ $p->tgl_pinjam_formatted }}</td>
                     <td>{{ $p->tgl_kembali_seharusnya }}</td>
                     <td>{{ $p->tgl_kembali_sebenarnya ?? '-'}}</td>

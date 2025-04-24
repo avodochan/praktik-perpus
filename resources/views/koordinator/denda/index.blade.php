@@ -4,7 +4,6 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Daftar Denda</h2>
-        <a href="{{ route('denda.create') }}" class="btn btn-primary">Tambah Denda</a>
     </div>
 
     @if(session('success'))
@@ -22,6 +21,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping untuk menampilkan data --}}
             @foreach($denda as $d)
                 <tr>
                     <td>{{ $d->id_denda}}</td>

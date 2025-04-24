@@ -41,6 +41,7 @@
             </select>
         </div>
 
+        {{-- get tanggal peminjaman --}}
         <div class="mb-3">
             <label for="tgl_pinjam" class="form-label">Tanggal Pinjam</label>
             <input type="date" id="tgl_pinjam" name="tgl_pinjam" class="form-control" value="{{ old('tgl_pinjam') ?? $peminjaman->tgl_pinjam }}" disabled>

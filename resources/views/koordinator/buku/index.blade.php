@@ -26,6 +26,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- looping untuk menampilkan data buku --}}
             @foreach($buku as $b)
                 <tr>
                     <td>{{ $b->id_buku }}</td>

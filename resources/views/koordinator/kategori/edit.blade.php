@@ -4,6 +4,7 @@
 <div class="container">
     <h1>Edit Kategori</h1>
 
+    {{-- get error apapun dari form --}}
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>

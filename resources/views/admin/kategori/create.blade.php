@@ -3,6 +3,7 @@
 <div class="container">
     <h1>Tambah Kategori</h1>
 
+    {{-- get error apapun --}}
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -13,6 +14,7 @@
         </div>
     @endif
 
+    {{-- form untuk mengirim data ke database --}}
     <form action="{{ route('kategori.store') }}" method="POST">
         @csrf
         <div class="mb-3">

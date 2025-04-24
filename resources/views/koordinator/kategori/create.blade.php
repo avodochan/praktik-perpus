@@ -13,6 +13,7 @@
         </div>
     @endif
 
+    {{-- form untuk menambahkan kategori --}}
     <form action="{{ route('kategori.store') }}" method="POST">
         @csrf
         <div class="mb-3">

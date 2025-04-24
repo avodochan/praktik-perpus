@@ -53,7 +53,8 @@
             <label for="cover" class="form-label">Cover Buku</label>
             <input type="file" id="cover" name="cover" class="form-control" accept="jpg">
             <p>preview cover sebelumnya:</p>
-            <img src="{{ asset('storage/' . $buku->cover) }}" alt="Cover Buku" width="80">
+            {{-- get data foto dari storage untuk ditampilkan (preview) --}}
+            <img src="{{ asset('storage/' . $buku->cover) }}" alt="Cover Buku" width="80"> 
         </div>
 
         <div class="mb-3">

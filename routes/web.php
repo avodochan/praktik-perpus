@@ -5,8 +5,9 @@ use App\Http\Controllers\DendaController;
 use App\Http\Controllers\HomeMembeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamanController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BukuController;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware(['auth', 'checkrole:admin']);
 
+
 Route::get('/', [UserController::class, 'index'])->name('user.index');
 Route::get('/register', [AuthController::class, 'showregister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -38,6 +40,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //admin routes
 Route::middleware(['auth', 'checkrole:admin'])->group(function() 
 {
+    
     Route::resource('kategori', KategoriController::class);
     Route::get('/admin/kategori', [KategoriController::class, 'index'])->name('admin.kategori.view');
     Route::resource('buku', BukuController::class);
